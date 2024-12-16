@@ -1,4 +1,3 @@
-import CircuitPost from "@/components/forms/CircuitPost";
 import ProfileHeader from "@/components/shared/ProfileHeader";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 import { TabsContent } from "@/components/ui/tabs";
@@ -10,7 +9,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 async function Page({ params }: { params: { id: string } }) {
-  const { id } = await params;
+  const { id } = params;
   const user = await currentUser();
 
   if (!user) return null;
