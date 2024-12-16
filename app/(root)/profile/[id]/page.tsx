@@ -9,13 +9,14 @@ import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-async function Page({ params }: { params: { id: string } }) {
-  // const { id } = await params;
+async function Page({ params }: { params: Promise<{ id: string }>}) {
+  const id =(await params).id;
+
   const user = await currentUser();
 
   if (!user) return null;
 
-  const userInfo = await fetchUser(params.id);
+  const userInfo = await fetchUser(id);
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 
