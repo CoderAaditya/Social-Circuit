@@ -6,9 +6,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
-
-  if (!id) return null;
+  if (!params.id) return null;
 
   const user = await currentUser();
   if (!user) return null;
@@ -16,7 +14,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const userInfo = await fetchUser(user?.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  const thread = await fetchThreadById(id);
+  const thread = await fetchThreadById(params.id);
   return (
     <section className="relative">
       <div>
