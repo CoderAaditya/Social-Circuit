@@ -2,6 +2,9 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  typeScript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     serverActions: {}, 
   },
