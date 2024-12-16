@@ -36,12 +36,12 @@ type Event = {
 
 export const POST = async (request: Request) => {
   const payload = await request.json();
-  const header = headers();
+  const header = await headers();
 
   const heads = {
-    "svix-id": header.get("svix-id"),
-    "svix-timestamp": header.get("svix-timestamp"),
-    "svix-signature": header.get("svix-signature"),
+    "svix-id": header.get("svix-id") || "",
+    "svix-timestamp": header.get("svix-timestamp") || "",
+    "svix-signature": header.get("svix-signature") || "",
   };
 
   // Activitate Webhook in the Clerk Dashboard.
